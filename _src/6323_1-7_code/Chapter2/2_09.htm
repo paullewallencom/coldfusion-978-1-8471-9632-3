@@ -1,0 +1,9 @@
+<!--- Listing 2.9 --->
+
+<cffunction name="getCurrentDate" access="public" 
+			output="false" returnType="date" 
+			description="I return the current date as dd/mm/yyyy">
+				
+	<cfreturn dateFormat(Now(), "dd/mm/yyyy") />
+	
+</cffunction>

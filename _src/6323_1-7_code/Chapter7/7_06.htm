@@ -1,0 +1,14 @@
+<!--- Listing 7.6 --->
+
+<cffunction name="getAllUsers" 
+		access="public" 
+		output="false" 
+		hint="I run a query of all users 
+				within the database table.">
+	<!--- 
+		Call the query method from the User Gateway 
+		and return the query object. 
+	--->	
+	<cfreturn variables.instance.userGW.filterAllUsers() />
+	
+</cffunction>

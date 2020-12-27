@@ -1,0 +1,38 @@
+<!--- Listing 6.6 --->
+
+<cffunction name="filterByLastName" 
+		access="public" 
+		output="false" 
+		hint="I run a query of all users within the database 
+				table based upon a required filter.">
+
+	<cfargument name="lastNameFilter" 
+			required="true" 
+			type="String" 
+			hint="I am the filter you wish to 
+				apply for the last name of the user." />
+
+		<cfset var qUserFilter 	= '' />
+	
+			<cfquery name="qUserFilter"
+					 datasource="#variables.instance.datasource.getDSName()#"
+					 username="#variables.instance.datasource.getUsername()#"
+					 password="#variables.instance.datasource.getPassword()#">
+				SELECT
+				 	ID,
+					firstName,
+					lastName,
+					username,
+					password,
+					emailAddress
+				FROM
+					tbl_Users
+				WHERE
+					lastName LIKE 
+					<cfqueryparam cfsqltype="cf_sql_varchar" 
+							value="#arguments.lastNameFilter#" />
+			</cfquery>
+
+	<cfreturn qUserFilter />
+	
+</cffunction>

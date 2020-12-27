@@ -1,0 +1,59 @@
+<!--- Listing 4.9 --->
+
+<cfcomponent displayname="Car" 
+			output="false" 
+			hint="I am the Car Class.">
+
+	<cfproperty name="engine" type="any" default="" />
+	<cfproperty name="driver" type="any" default="" />
+
+	<cfset variables.instance = structNew() />
+	
+	<cffunction name="init" access="public" 
+				output="false" returntype="any" 
+				hint="I am the constructor method 
+						for the Car Class.">
+						
+		<cfargument name="driver" required="false" 
+					type="Any" 
+					hint="I am a driver object." />
+					
+			<cfset variables.instance.engine 
+					= createObject('component', 'engine') />
+					
+			<cfif structKeyExists(arguments, 'driver')>
+				<cfset variables.instance.driver 
+						= arguments.driver />
+			</cfif>
+			
+		<cfreturn this />
+		
+	</cffunction>
+	
+	<!--- getters / accessors --->
+	<cffunction name="getEngine" access="public" 
+				output="false" 
+				hint="I return the engine.">
+				
+		<cfreturn variables.instance.engine />
+		
+	</cffunction>
+	
+	<cffunction name="getDriver" access="public" 
+				output="false" 
+				hint="I return the driver.">
+				
+		<cfreturn variables.instance.driver />
+		
+	</cffunction>
+	
+	<!--- public methods --->
+	<cffunction name="hasDriver" access="public" 
+				returntype="boolean" output="false" 
+				hint="I check to see if a driver exists.">
+				
+		<cfreturn structKeyExists(variables.instance, 'driver') />
+		
+	</cffunction>
+
+</cfcomponent>

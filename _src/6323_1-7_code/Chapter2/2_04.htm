@@ -1,0 +1,33 @@
+<!--- Listing 2.4 --->
+
+<!--- retrieve all projects within the database ---> 
+<cffunction name="getAllProjects" output="false" returnType="query"> 
+	<cfargument name="userID" required="false" type="numeric" default="0" /> 
+		<!--- var scope the query variable ---> 
+		<cfset var rstProjects = "" /> 
+			<!--- Wrap the query in try/catch ---> 
+			<cftry> 
+				<cfquery name="rstProjects" datasource="#This.dsn#"> 
+				SELECT 
+					ID, 
+					name, 
+					status, 
+					createdByUserID, 
+					dateCreated, 
+					dateCompleted 
+				FROM 
+					projects 
+				<cfif arguments.userID GT 0> 
+				WHERE createdByUserID = <cfqueryparam 
+												cfsqltype="integer" 
+												value="#arguments.userID#" /> 
+				</cfif> 
+				</cfquery> 
+				<!--- catch and display any errors ---> 
+				<cfcatch> 
+					<cfdump var="#cfcatch#" /> 
+					<cfabort /> 
+				</cfcatch> 
+			</cftry> 
+	<cfreturn rstProjects /> 
+</cffunction> 

@@ -1,0 +1,26 @@
+<!--- Listing 5.15 --->
+
+<!--- SAVE --->
+<cffunction name="saveUser" 
+			access="public" 
+			output="false" 
+			returntype="string" 
+			hint="I handle saving a User, either by creating 
+					a new entry or updating an existing one.">
+					
+	<cfargument name="user" 
+				required="true" 
+				type="com.packtApp.oop.beans.User" 
+				hint="I am the User bean." />
+				
+    	<cfset var success = '' />
+
+    	<cfif exists(arguments.user)>	
+        	<cfset success = updateUser(arguments.user) />
+       	<cfelse>
+         	<cfset success = createNewUser(arguments.user) />
+       	</cfif>
+			
+	<cfreturn success />
+	
+</cffunction>

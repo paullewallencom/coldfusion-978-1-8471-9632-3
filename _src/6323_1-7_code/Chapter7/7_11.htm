@@ -1,0 +1,40 @@
+<!--- Listing 7.11 --->
+
+<cffunction name="save" access="public" 
+			output="false" 
+			hint="I save or update an Address into the database.">
+			
+	<cfargument name="address" 
+				required="true" 
+				type="com.packtApp.oop.beans.Address" 
+				hint="I am the Address bean." />
+				
+	<cfreturn variables.instance.addressDAO.saveAddress(arguments.address) />
+	
+</cffunction>
+
+<cffunction name="read" access="public" 
+			output="false" 
+			hint="I obtain details for a specific address from the database.">
+			
+	<cfargument name="ID" 
+				required="true" 
+				type="numeric" 
+				hint="I am the ID of the address you wish to search for." />
+	
+	<cfreturn variables.instance.addressDAO.getAddressByID(arguments.ID) />
+	
+</cffunction>
+
+<cffunction name="delete" access="public" 
+			output="false" 
+			hint="I delete a specific Address the database.">
+			
+	<cfargument name="ID" 
+				required="true" 
+				type="String" 
+				hint="I am the ID of the address you wish to delete." />
+				
+	<cfreturn variables.instance.addressDAO.deleteAddressByID(arguments.ID) />
+	
+</cffunction>

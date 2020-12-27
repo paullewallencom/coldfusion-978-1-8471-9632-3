@@ -1,0 +1,67 @@
+<!--- Listing 5.11 --->
+
+<h3>Current User Information</h3>
+<!--- Instantiate the Datasource object. --->
+<cfset objDatasource = 
+		createObject('component',
+		'com.packtApp.oop.beans.Datasource')
+		.init(
+			DSName='CFOOP',
+			username='<your dsn username>',
+			password='<your dsn password>'
+		) />
+
+<!---
+	Instantiate the UserDAO object, 
+	and pass in the Datasource object.
+--->
+<cfset objUserDAO = 
+		createObject('component', 
+		'com.packtApp.oop.dataAccess.UserDAO')
+		.init(
+			datasource=objDataSource
+		) />
+		
+<!---
+	Get the User bean for this user from the DAO.
+--->
+<cfset objUserBean = 
+		objUserDAO.getUserByID(7) />
+		
+<!--- 
+	Dump the User Bean so we can see
+	the data it currently holds.
+--->
+<cfdump var="#objUserBean#" 
+		label="User Bean" />
+
+<!---
+	Check to see if the form has been submitted.
+--->
+<cfif structKeyExists(FORM, 'editUser_btn')>
+
+
+</cfif>
+
+<cfoutput>
+<form name="createUser" action="editUser.cfm" method="POST">
+
+	<label 	for="firstName">First name:</label>
+	<input 	type="text" 
+			name="firstName" 
+			value="#objUserBean.getFirstName()#" /><br />
+			
+	<label 	for="lastName">Surname:</label>
+	<input 	type="text" 
+			name="lastName" 
+			value="#objUserBean.getLastName()#" /><br />
+			
+	<label 	for="emailAddress">Email:</label>
+	<input 	type="text" 
+			name="emailAddress" 
+			value="#objUserBean.getEmailAddress()#" /><br />
+			
+	<input 	type="submit" 
+			name="editUser_btn" value="Edit User" />
+</form>
+</cfoutput>

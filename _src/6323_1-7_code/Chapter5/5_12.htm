@@ -1,0 +1,33 @@
+<!--- Listing 5.12 --->
+
+<!---
+	Check to see if the form has been submitted.
+--->
+<cfif structKeyExists(FORM, 'editUser_btn')>
+
+	<h3>Edited User Information</h3>
+	
+	<!---
+		Set the values of the form elements into the 
+		currently populated User bean object.
+	--->
+	<cfset objUserBean.setFirstName(FORM.firstName) />
+	<cfset objUserBean.setLastName(FORM.lastName) />
+	<cfset objUserBean.setEmailAddress(FORM.emailAddress) />
+	
+	<!---
+		Pass this User bean into the updateUser() method.
+	--->
+	<cfset objUserDAO.updateUser(user=objUserBean) />
+
+	<!--- 
+		Just for this example, let's query the database
+		for the userID and pull out the information
+		to make sure it matches the amendments we have made.
+	--->
+	<cfset objUserBean = 
+		objUserDAO.getUserByID(7) />
+		
+	<cfdump var="#objUserBean#" 
+			label="Revised New User Bean" />
+</cfif>

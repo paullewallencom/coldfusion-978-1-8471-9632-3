@@ -1,0 +1,41 @@
+<!--- Listing 7.3 --->
+
+<!--- CRUD METHODS --->
+<cffunction name="save" access="public" 
+			output="false" 
+			hint="I save or update a User into the database.">
+			
+	<cfargument name="user" 
+				required="true" 
+				type="com.packtApp.oop.beans.User" 
+				hint="I am the User bean." />
+				
+	<cfreturn variables.instance.userDAO.saveUser(arguments.user) />
+	
+</cffunction>
+
+<cffunction name="read" access="public" 
+			output="false" 
+			hint="I obtain details for a specific User from the database.">
+			
+	<cfargument name="userID" 
+				required="true" 
+				type="numeric" 
+				hint="I am the ID of the user you wish to search for." />
+				
+	<cfreturn variables.instance.userDAO.getUserByID(arguments.userID) />
+	
+</cffunction>
+
+<cffunction name="delete" access="public" 
+			output="false" 
+			hint="I delete a specific User the database.">
+			
+	<cfargument name="userID" 
+				required="true" 
+				type="String" 
+				hint="I am the ID of the user you wish to delete." />
+				
+	<cfreturn variables.instance.userDAO.deleteUserByID(arguments.userID) />
+	
+</cffunction>

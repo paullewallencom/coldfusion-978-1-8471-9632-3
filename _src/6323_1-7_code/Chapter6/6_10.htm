@@ -1,0 +1,37 @@
+<!--- Listing 6.10 --->
+
+<cffunction name="onApplicationStart" output="false">
+
+	<!--- Instantiate the Datasource object. --->
+    <cfset var objDatasource = 
+			createObject('component',
+			'com.packtApp.oop.beans.Datasource')
+			.init(
+				DSName='CFOOP',
+				username='<your dsn username>',
+				password='<your dsn password>'
+			) />
+	
+	<!--- Instantiate the UserDAO object. --->
+    <cfset var objUserDAO = 
+			createObject('component', 
+			'com.packtApp.oop.dataAccess.UserDAO')
+			.init(
+				datasource=objDataSource
+			) />
+	
+	<!--- Instantiate the UserGateway object. --->
+	<cfset var objUserGW = 
+			createObject('component',
+			'com.packtApp.oop.dataAccess.UserGateway')
+			.init(
+				datasource=objDataSource
+			) />
+    
+	<!--- Store the UserDAO in the Application scope. --->
+    <cfset Application.userDAO = objUserDAO />
+	
+	<!--- Store the UserGW in the Application scope. --->
+    <cfset Application.userGW = objUserGW />
+	
+</cffunction>

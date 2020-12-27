@@ -1,0 +1,22 @@
+<!--- Listing 6.3 --->
+
+<!--- Instantiate the Datasource object. --->
+<cfset objDatasource = 
+		createObject('component',
+		'com.packtApp.oop.beans.Datasource')
+		.init(
+			DSName='CFOOP',
+			username='<username>',
+			password='<password>'
+		) />
+
+<!---
+	Instantiate the UserGateway object,
+	and pass in the Datasource object.
+--->
+<cfset objUserGW = 
+		createObject('component',
+		'com.packtApp.oop.dataAccess.UserGateway')
+		.init(
+			datasource=objDataSource
+		) />

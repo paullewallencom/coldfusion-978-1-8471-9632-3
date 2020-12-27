@@ -1,0 +1,37 @@
+<!--- Listing 7.13 --->
+
+<cffunction name="onApplicationStart" output="false">
+
+	<!--- Instantiate the Datasource object. --->
+    <cfset var objDatasource = 
+			createObject('component',
+			'com.packtApp.oop.beans.Datasource')
+			.init(
+				DSName='CFOOP',
+				username='< your datasource username >',
+				password='< your datasource password >'
+			) />
+	
+	<!---
+		Instantiate and persist the User
+		Service in the application scope.
+	--->
+	<cfset Application.userSVC = 
+			createObject('component',
+			'com.packtApp.oop.dataAccess.UserService')
+			.init(
+				datasource = objDatasource
+			) />
+	
+	<!---
+		Instantiate and persist the Address
+		Service in the application scope.
+	--->
+	<cfset Application.addressSVC = 
+			createObject('component',
+			'com.packtApp.oop.dataAccess.AddressService')
+			.init(
+				datasource = objDatasource
+			) />
+
+</cffunction>

@@ -1,0 +1,86 @@
+/* Listing 3.17 */
+
+component displayname="Person" 
+		  hint="I am the Person Class." 
+		  accessors="true" 
+{
+
+	property name="firstName"
+				type="string" 
+			 	default="" 
+				setter="false";
+				
+	property name="lastName"	
+				type="string"
+				default="" 
+				setter="false";
+				
+	property name="gender"		
+				type="string" 
+				default="" 
+				setter="false";
+				
+	property name="dateofbirth"	
+				type="string" 
+				default="" 
+				setter="false";
+				
+	property name="hairColor"	
+				type="string" 
+				default=""
+				setter="false";
+	
+	public any function init(
+			required string firstName 	= "", 
+			required string lastName  	= "",
+			required string gender	 	= "",
+			required string dateofbirth = "",
+			required string hairColor	= ""
+		)
+		output="false" 
+		hint="I am the constructor method for the Person Class."
+	{
+			/*
+				Store the values into the variables scope.
+				We do not have mutator/setter methods
+				within this component, but we can set the
+				values into the variables scope directly.
+			*/
+			variables.firstName 	= arguments.firstName;
+			variables.lastName		= arguments.lastName;
+			variables.gender		= arguments.gender;
+			variables.dateofbirth 	= arguments.dateofbirth;
+			variables.hairColor		= arguments.hairColor;
+			
+		return (this);
+	}
+	
+	public string function getFullName() 
+		output="false" 
+		hint="I return the full name of the person." 
+	{
+			local.strFullName = variables.firstName & 
+				' ' & variables.lastName;
+
+		return local.strFullName;
+	}
+	
+	public string function getAgeInYears()
+		output="false"
+		hint="I work out the age of the person in 
+				years based upon the current date."
+	{
+			local.strAgeInYears = 
+					dateDiff('yyyy', getDateOfBirth(), now());
+					
+		return local.strAgeInYears;
+	}
+	
+	public any function getMemento() 
+		output="false" 
+		hint="I return the variables scope." 
+	{
+		return variables;
+	}
+
+}

@@ -1,0 +1,55 @@
+<!--- Listing 4.1 --->
+
+<cfcomponent displayname="Product" 
+			output="false" 
+			hint="I am the Product Base Class.">
+	
+	<cfset variables.instance = structNew() />
+	
+	<cffunction name="init" access="public" 
+				output="false" returntype="any" 
+				hint="I am the constructor method for 
+						the Product Base class.">
+						
+		<cfargument name="name" required="true" 
+					type="String" default=""	
+					hint="I am the name of the product." />
+					
+		<cfargument name="description" required="true" 
+					type="String" default=""	
+					hint="I am a description for the product." />
+					
+		<cfargument name="price" required="true" 
+					type="String" default=""
+					hint="I am the price." />
+					
+			<cfscript>
+				variables.instance.name = arguments.name;
+				variables.instance.description = arguments.description;	
+				variables.instance.price = arguments.price;
+			</cfscript>
+
+		<cfreturn this />
+
+	</cffunction>
+	
+	<!--- getters / accessors --->
+	<cffunction name="getName" access="public" 
+				output="false" 
+				hint="I return the name of the product.">
+		<cfreturn variables.instance.name />
+	</cffunction>
+	
+	<cffunction name="getDescription" access="public" 
+				output="false" 
+				hint="I return a decsription of the product.">
+		<cfreturn variables.instance.description />
+	</cffunction>
+	
+	<cffunction name="getPrice" access="public" 
+				output="false" 
+				hint="I return the price of the product.">
+		<cfreturn variables.instance.price />
+	</cffunction>
+		
+</cfcomponent>

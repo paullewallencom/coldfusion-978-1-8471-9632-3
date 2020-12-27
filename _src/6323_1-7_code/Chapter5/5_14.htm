@@ -1,0 +1,27 @@
+<!--- Listing 5.14 --->
+
+<!--- Instantiate the Datasource object. --->
+<cfset objDatasource = 
+		createObject('component',
+		'com.packtApp.oop.beans.Datasource')
+		.init(
+			DSName='CFOOP',
+			username='root',
+			password='kahuna'
+		) />
+
+<!---
+	Instantiate the UserDAO object, 
+	and pass in the Datasource object.
+--->
+<cfset objUserDAO = 
+		createObject('component', 
+		'com.packtApp.oop.dataAccess.UserDAO')
+		.init(
+			datasource=objDataSource
+		) />
+
+<!---
+	Delete a specific user from the database.
+--->
+<cfset objUserDAO.deleteUserByID(4) />

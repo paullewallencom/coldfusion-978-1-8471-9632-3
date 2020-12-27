@@ -1,0 +1,24 @@
+<!--- Listing 1.15 --->
+
+<cfoutput> 
+
+<cffunction name="baseNumber" returnType="numeric"> 
+	<cfargument name="a" type="numeric" required="true" /> 
+		<cfset x = arguments.a /> 
+	<cfreturn x /> 
+</cffunction> 
+
+<cffunction name="multiplyNumbers" returntype="string"> 
+	<cfargument name="a" type="numeric" required="true" /> 
+	<cfargument name="b" type="numeric" required="true" /> 
+		<!--- multiply our basenumber value by 10 ---> 
+		<cfset x = 10 /> 
+		<cfset y = baseNumber(a) /> 
+	<cfreturn y & " multiplied by " & x & " = " & x * arguments.b /> 
+</cffunction>
+ 
+<cfloop from="1" to="10" index="i"> 
+#multiplyNumbers(i,i)#<br /> 
+</cfloop> 
+
+</cfoutput> 

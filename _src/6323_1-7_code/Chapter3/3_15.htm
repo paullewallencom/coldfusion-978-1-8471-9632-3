@@ -1,0 +1,233 @@
+<!--- Listing 3.15 --->
+
+<cfcomponent displayname="Person" 
+			 output="false" 
+			 hint="I am the Person Class.">
+
+	<cfproperty name="firstName" 	
+				type="string" default="" />
+				
+	<cfproperty name="lastName" 	
+				type="string" default="" />
+				
+	<cfproperty name="gender" 		
+				type="string" default="" />
+				
+	<cfproperty name="dateofbirth" 	
+				type="string" default="" />
+				
+	<cfproperty name="hairColor"	
+				type="string" default="" />
+
+	<!--- Pseudo-constructor --->
+	<cfset variables.instance = {
+		firstName 		= '',
+		lastName		= '',
+		gender			= '',
+		dateofbirth 	= '',
+		hairColor		= ''
+	} />
+	
+	<cffunction name="init" access="public" 
+				output="false" 
+				returntype="any"
+				hint="I am the constructor method for the Person Class.">
+				
+		<cfargument name="firstName" 	
+					required="true"
+					type="String" 
+					default="" 
+					hint="I am the first name." />
+					
+		<cfargument name="lastName" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the last name." />
+					
+		<cfargument name="gender" 		
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the gender." />
+					
+		<cfargument name="dateofbirth" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the date of birth." />
+					
+		<cfargument name="hairColor" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the hair color." />
+					
+			<!--- Set the initial values of the Bean --->
+			<cfscript>
+				setFirstName(arguments.firstName);
+				setLastName(arguments.lastName);
+				setGender(arguments.gender);
+				setDateOfBirth(arguments.dateofbirth);
+				setHairColor(arguments.hairColor);
+			</cfscript>
+			
+		<cfreturn this />
+	</cffunction>
+	
+	
+	<!--- getters / accessors --->
+	<cffunction name="getFirstName" 
+				access="public" 
+				output="false" 
+				hint="I return the first name.">
+		<cfreturn variables.instance.firstName />
+	</cffunction>
+	
+	<cffunction name="getLastName" 
+				access="public" 
+				output="false" 
+				hint="I return the last name.">
+		<cfreturn variables.instance.lastName />
+	</cffunction>
+	
+	<cffunction name="getGender" 
+				access="public" 
+				output="false" 
+				hint="I return the gender.">
+		<cfreturn variables.instance.gender />
+	</cffunction>
+	
+	<cffunction name="getDateOfBirth" 
+				access="public" 
+				output="false" 
+				hint="I return the date of birth.">
+		<cfreturn variables.instance.dateofbirth />
+	</cffunction>
+	
+	<cffunction name="getHairColor" 
+				access="public" 
+				output="false"
+				hint="I return the hair color.">
+		<cfreturn variables.instance.hairColor />
+	</cffunction>
+
+	<!--- setters /mutators --->
+	<cffunction name="setFirstName" 
+				access="public" 
+				output="false" 
+				hint="I set the first name into the 
+						variables.instance scope.">
+						
+		<cfargument name="firstName" 
+					required="true" 
+					type="String" 
+					hint="I am the persons firstName." />
+					
+			<cfset variables.instance.firstName = 
+						arguments.firstName />
+	</cffunction>
+	
+	<cffunction name="setLastName" 
+				access="public" 
+				output="false" 
+				hint="I set the last name into the 
+						variables.instance scope.">
+						
+		<cfargument name="lastName" 
+					required="true" 
+					type="String" 
+					hint="I am the persons lastName." />
+					
+			<cfset variables.instance.lastName = 
+						arguments.lastName />
+	</cffunction>
+	
+	<cffunction name="setGender" 
+				access="public" 
+				output="false" 
+				hint="I set the gender into the 
+					variables.instance scope.">
+					
+		<cfargument name="gender" 
+					required="true" 
+					type="String" 
+					hint="I am the persons gender." />
+					
+			<cfset variables.instance.gender = 
+						arguments.gender />
+	</cffunction>
+	
+	<cffunction name="setDateOfBirth" 
+				access="public" 
+				output="false" 
+				hint="I set the dateofbirth into the 
+						variables.instance scope.">
+						
+		<cfargument name="dateofbirth" 
+					required="true" 
+					type="String" 
+					hint="I am the persons dateofbirth." />
+					
+			<cfset variables.instance.dateofbirth = 
+						arguments.dateofbirth />
+	</cffunction>
+	
+	<cffunction name="setHairColor" 
+				access="public" 
+				output="false" 
+				hint="I set the hairColor into the 
+						variables.instance scope.">
+						
+		<cfargument name="hairColor" 
+					required="true" 
+					type="String" 
+					hint="I am the persons hairColor." />
+					
+			<cfset variables.instance.hairColor = 
+						arguments.hairColor />
+	</cffunction>
+	
+	<cffunction name="getFullName" 
+			access="public" 
+			output="false" 
+			hint="I return the full name of the person.">
+		<cfset var strFullName = '' />
+		<!---
+			Concatenate the string values to return the full name.
+			Here, we call the variables.instance values directly.
+			You could also call the get methods, like so:
+			getFirstName() & ' ' & getLastName()
+		--->
+			<cfset strFullName = variables.instance.firstName & 
+									' ' & variables.instance.lastName />
+	
+		<cfreturn strFullName />
+	</cffunction>
+	
+	<cffunction name="getAgeInYears" 
+				access="public" 
+				output="false" 
+				hint="I work out the age of the person in 
+						years based upon the current date.">
+		<cfset var strAgeInYears = '' />
+			<!---
+				Calculate the difference in years using the person's 
+				stored date of birth and the current year.
+			--->
+			<cfset strAgeInYears = 
+						dateDiff('yyyy', getDateOfBirth(), now()) />
+			
+		<cfreturn strAgeInYears />
+	</cffunction>
+
+	
+	<!--- utils --->
+	<cffunction name="getMemento" access="public" 
+				output="false" 
+				hint="I return a dumped struct of the 
+						variables.instance scope.">
+		<cfreturn variables.instance />
+	</cffunction>
+
+</cfcomponent>

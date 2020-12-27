@@ -1,0 +1,46 @@
+<!--- Listing 3.6 --->
+
+<cffunction name="init" access="public" 
+			output="false" 
+			returntype="any" 
+			hint="I am the constructor method for the Person Class.">
+
+	<cfargument name="firstName" 	
+				required="true" 
+				type="String" 
+				default="" 
+				hint="I am the first name." />
+				
+	<cfargument name="lastName" 	
+				required="true" 
+				type="String" 
+				default="" 
+				hint="I am the last name." />
+				
+	<cfargument name="gender" 		
+				required="true" 
+				type="String" 
+				default="" 
+				hint="I am the gender." />
+				
+	<cfargument name="dateofbirth" 	
+				required="true" 
+				type="String" 
+				default="" 
+				hint="I am the date of birth." />
+				
+	<cfargument name="hairColor" 	
+				required="true" 
+				type="String" 
+				default="" 
+				hint="I am the hair color." />
+				
+		<!--- Set the initial values of the Bean --->
+		<cfscript>
+			setFirstName(arguments.firstName);
+			setLastName(arguments.lastName);
+		</cfscript>
+
+	<cfreturn this />
+	
+</cffunction>

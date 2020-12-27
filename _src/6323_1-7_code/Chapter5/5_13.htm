@@ -1,0 +1,38 @@
+<!--- Listing 5.13 --->
+
+<!--- DELETE --->
+<cffunction name="deleteUserByID" 
+			access="public" 
+			output="false" 
+			returntype="boolean" 
+			hint="I delete a user from the database.">
+			
+	<cfargument name="userID" 
+				required="true" 
+				type="String" 
+				hint="I am the ID of the user 
+                   you wish to delete." />
+				
+		<cfset var qDelete 		= '' />
+		<cfset var boolSuccess	= true />
+		
+			<cftry>
+				<cfquery name="qUpdate"
+						datasource="#variables.instance.datasource.getDSName()#"
+					 	username="#variables.instance.datasource.getUsername()#"
+					 	password="#variables.instance.datasource.getPassword()#">
+					 	
+					DELETE FROM tbl_Users
+					WHERE
+						ID = <cfqueryparam 
+								cfsqltype="cf_sql_integer" 
+								value="#arguments.userID#" />
+								
+				</cfquery>
+				<cfcatch type="database">
+					<cfset boolSuccess = false />
+				</cfcatch>
+			</cftry>
+			
+	<cfreturn boolSuccess  />
+</cffunction>

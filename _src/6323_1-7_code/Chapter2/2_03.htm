@@ -1,0 +1,14 @@
+<!--- Listing 2.3 --->
+
+<cfcomponent name="Projects" output="false">
+	 
+	<!--- pseudo constructor code here ---> 
+	<cfset This.dsn = "projectTracker" /> 
+	Our datasource is #This.dsn# 
+	
+	<!--- function to get the current date ---> 
+	<cffunction name="getCurrentDate" output="false" returnType="Date"> 
+		<cfreturn dateFormat(Now(), "dd/mm/yyyy") /> 
+	</cffunction> 
+
+</cfcomponent>

@@ -1,0 +1,60 @@
+<!--- Listing 7.1 --->
+
+<cffunction name="onApplicationStart" output="false">
+
+	<!--- Instantiate the Datasource object. --->
+    <cfset var objDatasource = 
+			createObject('component',
+			'com.packtApp.oop.beans.Datasource')
+			.init(
+				DSName='CFOOP',
+				username='<your dsn username>',
+				password='<your dsn password>'
+			) />
+	
+	<!--- Instantiate the UserDAO object. --->
+    <cfset var objUserDAO = 
+			createObject('component', 
+			'com.packtApp.oop.dataAccess.UserDAO')
+			.init(
+				datasource=objDataSource
+			) />
+	
+	<!--- Instantiate the UserGateway object. --->
+	<cfset var objUserGW = 
+			createObject('component',
+			'com.packtApp.oop.dataAccess.UserGateway')
+			.init(
+				datasource=objDataSource
+			) />
+    
+	<!--- Store the UserDAO in the Application scope. --->
+    <cfset Application.userDAO = objUserDAO />
+	
+	<!--- Store the UserGW in the Application scope. --->
+    <cfset Application.userGW = objUserGW />
+
+	
+	<!--- Instantiate the AddressDAO object. --->
+    <cfset var objAddressDAO = 
+			createObject('component', 
+			'com.packtApp.oop.dataAccess.AddressDAO')
+			.init(
+				datasource=objDataSource
+			) />
+	
+	<!--- Instantiate the AddressGateway object. --->
+	<cfset var objAddressGW = 
+			createObject('component',
+			'com.packtApp.oop.dataAccess.AddressGateway')
+			.init(
+				datasource=objDataSource
+			) />
+			
+	<!--- Store the addressDAO in the Application scope. --->
+    <cfset Application.addressDAO = objAddressDAO />
+	
+	<!--- Store the addressGW in the Application scope. --->
+    <cfset Application.addressGW = objAddressGW />
+	
+</cffunction>

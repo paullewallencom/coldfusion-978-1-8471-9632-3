@@ -1,0 +1,35 @@
+<!--- Listing 5.1 --->
+
+<cfcomponent displayname="UserDAO" 
+			output="false" 
+			hint="I am the UserDAO Class.">
+
+	<!--- Pseudo-constructor --->
+	<cfset variables.instance = {
+		datasource	= ''
+	} />
+	
+	<cffunction name="init" 
+				access="public" 
+				output="false" 
+				returntype="any" 
+				hint="I am the constructor method 
+					for the UserDAO Class.">
+				
+		<cfargument name="datasource" 
+					required="true" 
+					type="com.packtApp.oop.beans.Datasource" 
+					hint="I am the datasource object." />
+					
+			<!--- Set the initial values of the Bean --->
+			<cfscript>
+				variables.instance.datasource = arguments.datasource;
+			</cfscript>
+			
+		<cfreturn this />
+		
+	</cffunction>
+	
+	<!--- PUBLIC METHODS --->
+	
+</cfcomponent>

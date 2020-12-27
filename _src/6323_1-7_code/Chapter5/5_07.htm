@@ -1,0 +1,55 @@
+<!--- Listing 5.7 --->
+
+<!--- READ --->
+<cffunction name="getUserByID" 
+			access="public" 
+			output="false" 
+			hint="I return a Person bean populated with 
+					details of a specific user.">
+					
+	<cfargument name="userID" 
+				required="true" 
+				type="Numeric" 
+				hint="I am the ID of the user you wish to search for." />
+				
+		<cfset var qSearch 		= '' />
+		<cfset var objPerson 	= '' />
+		
+			<cfquery name="qSearch"
+				 	datasource="#variables.instance.datasource.getDSName()#"
+				 	username="#variables.instance.datasource.getUsername()#"
+				 	password="#variables.instance.datasource.getPassword()#">
+				SELECT
+				 	ID,
+					firstName,
+					lastName,
+					username,
+					password,
+					emailAddress
+				FROM
+					tbl_Users
+				WHERE
+					ID = <cfqueryparam 
+								cfsqltype="cf_sql_integer" 
+								value="#arguments.userID#" />
+			</cfquery>
+			
+		<cfif qSearch.RecordCount>
+			<!---
+				If a record has been returned for the userID, 
+				create an instance of the User bean, and return it.
+			--->
+			<cfset objPerson = 
+					createObject('component', 'com.packtApp.oop.beans.User')
+					.init(
+						ID				= qSearch.ID,
+						firstName		= qSearch.firstName,
+						lastName		= qSearch.lastName,
+						username		= qSearch.username,
+						password		= qSearch.password,
+						emailAddress	= qSearch.emailAddress
+					) />
+		</cfif>
+		
+	<cfreturn objPerson />
+</cffunction>

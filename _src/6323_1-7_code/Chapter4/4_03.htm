@@ -1,0 +1,66 @@
+<!--- Listing 4.3 --->
+
+<cffunction name="init" access="public" 
+			output="false" returntype="any" 
+			hint="I am the constructor method 
+					for the Book Class.">
+			
+		<cfargument name="author" required="true" 
+					type="String" default="" 	
+					hint="I am the author of the book." />
+					
+		<cfargument name="totalPages" required="true" 
+					type="String" default=""	
+					hint="I am the total number of 
+							pages within the book." />
+					
+		<cfargument name="name" required="true" 
+					type="String" default=""	
+					hint="I am the name of the book." />
+					
+		<cfargument name="description" 	required="true" 
+					type="String" default=""	
+					hint="I am a description for the book." />
+					
+		<cfargument name="price" required="true" 
+					type="String" default=""	
+					hint="I am the price." />
+					
+			<cfscript>
+				// Set the values of the Book-specific properties
+				variables.instance.author 		
+					= arguments.author;
+					
+				variables.instance.totalPages 	
+					= arguments.totalPages;
+				
+				/*
+				Run the constructor method within the Base Product class
+				Here, we use the super prefix to 
+				override the Book init() method and 
+				to use the constructor within the Base class.
+				*/
+				super.init(
+						name 		= arguments.name,
+						description	= arguments.description,
+						price		= arguments.price
+					);
+			</cfscript>
+			
+	<cfreturn this />
+	
+</cffunction>
+
+<!--- getters / accessors --->
+<cffunction name="getAuthor" access="public" 
+			output="false" 
+			hint="I am the author.">
+	<cfreturn variables.instance.author />
+</cffunction>
+
+<cffunction name="getTotalPages" access="public" 
+			output="false" 
+			hint="I am the total number of 
+              pages within the book.">
+	<cfreturn variables.instance.totalPages />
+</cffunction>

@@ -1,0 +1,22 @@
+<!--- Listing 5.3 --->
+
+<!--- Instantiate the Datasource object. --->
+<cfset objDatasource = 
+		createObject('component',
+		'com.packtApp.oop.beans.Datasource')
+		.init(
+			DSName='CFOOP',
+			username='<username>',
+			password='<password>'
+		) />
+
+<!---
+	Instantiate the UserDAO object, 
+	and pass in the Datasource object.
+--->
+<cfset objUserDAO = 
+		createObject('component', 
+		com.packtApp.oop.dataAccess.UserDAO')
+		.init(
+			datasource=objDataSource
+		) />

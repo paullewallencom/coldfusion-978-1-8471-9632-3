@@ -1,0 +1,15 @@
+<!--- Listing 1.13 --->
+
+<cffunction name="personalGreeting"> 
+	<cfargument name="firstName" type="string" /> 
+	<cfargument name="lastName"  type="string" /> 
+		<cfscript> 
+		strHello = sayHello(); 
+		strFullName = getName(
+						firstName	=	arguments.firstName,
+						lastName	=	arguments.lastName
+					); 
+		strHelloMessage = strHello & ' My name is ' & strFullName; 
+		</cfscript> 
+	<cfreturn strHelloMessage /> 
+</cffunction> 

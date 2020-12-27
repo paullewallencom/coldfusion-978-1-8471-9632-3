@@ -1,0 +1,35 @@
+<!--- Listing 5.9 --->
+
+<!--- Instantiate the Datasource object. --->
+<cfset objDatasource = 
+		createObject('component',
+		'com.packtApp.oop.beans.Datasource')
+		.init(
+			DSName='CFOOP',
+			username='<your dsn username>',
+			password='<your dsn password>'
+		) />
+
+<!---
+	Instantiate the UserDAO object, 
+	and pass in the Datasource object.
+--->
+<cfset objUserDAO = 
+		createObject('component', 
+		'com.packtApp.oop.dataAccess.UserDAO')
+		.init(
+			datasource=objDataSource
+		) />
+
+<!---
+	Obtain the User Bean from the 
+	getUserByID() method.
+--->
+<cfset objUserBean = 
+		objUserDAO.getUserByID(1) />
+
+<!--- 
+	Dump the User Bean.
+--->
+<cfdump var="#objUserBean#" 
+		label="Returned User Bean" />

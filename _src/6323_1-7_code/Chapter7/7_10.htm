@@ -1,0 +1,55 @@
+<!--- Listing 7.10 --->
+
+<cfcomponent displayname="AddressSVC" 
+		output="false" 
+		hint="I am the AddressSVC Class used to 
+			interact with the Address package.">
+
+	<!--- Pseudo-constructor --->
+	<cfset variables.instance = {
+		addressDAO	= '',
+		addressGW	= ''
+	} />
+	
+	<cffunction name="init" 
+			access="public" 
+			output="false" 
+			returntype="any" 
+			hint="I am the constructor method for 
+					the AddressSVC Class.">
+			
+		<cfargument name="datasource" 
+				required="true" 
+				type="com.packtApp.oop.beans.Datasource" 
+				hint="I am the datasource object." />
+				
+			<!--- Set the initial values of the Bean --->
+			<cfscript>
+				// instantiate the Data Access Object
+				variables.instance.addressDAO 
+					= createObject(
+						'component', 
+						'AddressDAO'
+						)
+						.init(arguments.datasource);
+						
+				// instantiate the Gateway
+				variables.instance.addressGW 
+					= createObject(
+						'component', 
+						'AddressGateway'
+						)
+						.init(arguments.datasource);
+			</cfscript>
+			
+		<cfreturn this />
+		
+	</cffunction>
+	
+	<!--- CRUD METHODS --->
+	
+	
+	<!--- GATEWAY METHODS --->
+	
+		
+</cfcomponent>

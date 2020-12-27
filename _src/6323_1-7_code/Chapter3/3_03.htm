@@ -1,0 +1,70 @@
+<!--- Listing 3.3 --->
+
+<cfcomponent displayname="Person" 
+			 output="false" 
+			 hint="I am the Person Class.">
+
+	<cfproperty name="firstName" 	
+				type="string" default="" />
+				
+	<cfproperty name="lastName" 	
+				type="string" default="" />
+				
+	<cfproperty name="gender" 	
+				type="string" default="" />
+				
+	<cfproperty name="dateofbirth" 
+				type="string" default="" />
+				
+	<cfproperty name="hairColor"	
+				type="string" default="" />
+
+	<!--- Pseudo-constructor --->
+	<cfset variables.instance = {
+		firstName 		= '',
+		lastName		= '',
+		gender			= '',
+		dateofbirth 	= '',
+		hairColor		= ''
+	} />
+	
+	<cffunction name="init" access="public" 
+				output="false" 
+				returntype="any" 
+				hint="I am the constructor method for the Person Class.">
+
+		<cfargument name="firstName" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the first name." />
+					
+		<cfargument name="lastName" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the last name." />
+					
+		<cfargument name="gender" 		
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the gender." />
+					
+		<cfargument name="dateofbirth" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the date of birth." />
+					
+		<cfargument name="hairColor" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the hair color." />
+
+		<cfreturn this />
+		
+	</cffunction>
+	
+</cfcomponent>

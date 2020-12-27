@@ -1,0 +1,33 @@
+<!--- Listing 6.5 --->
+
+<!--- Instantiate the Datasource object. --->
+<cfset objDatasource = 
+		createObject('component',
+		'com.packtApp.oop.beans.Datasource')
+		.init(
+			DSName='CFOOP',
+			username='<username>',
+			password='<password>'
+		) />
+
+<!---
+	Instantiate the UserGateway object,
+	and pass in the Datasource object.
+--->
+<cfset objUserGW = 
+		createObject('component',
+		'com.packtApp.oop.dataAccess.UserGateway')
+		.init(
+			datasource=objDataSource
+		) />
+
+<!---
+	Pull out all users within the database.
+--->
+<cfset qResults = objUserGW.getAllUsers() />
+
+<!---
+	Dump the results.
+--->
+<cfdump var="#qResults#"
+		label="getAllUsers Results" />

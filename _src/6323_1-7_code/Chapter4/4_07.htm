@@ -1,0 +1,18 @@
+<!--- Listing 4.7 --->
+
+<cfcomponent displayname="Engine" 
+			output="false" 
+			hint="I am the Engine Class.">
+
+	<cfset variables.instance = structNew() />
+	
+	<cffunction name="init" access="public" 
+				output="false" returntype="any" 
+				hint="I am the constructor method 
+						for the Engine Class.">
+						
+		<cfreturn this />
+		
+	</cffunction>
+	
+</cfcomponent>

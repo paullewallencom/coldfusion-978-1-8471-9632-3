@@ -1,0 +1,13 @@
+<!--- Listing 1.28 --->
+
+<cffunction name="getContacts"> 
+	<cfset var rstContacts = "" />
+		<cfquery name="rstContacts" datasource="projectTracker"> 
+		SELECT 
+			firstName,
+			lastName 
+		FROM 
+			Owners 
+		</cfquery> 
+	<cfreturn rstContacts /> 
+</cffunction> 

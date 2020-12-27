@@ -1,0 +1,65 @@
+<!--- Listing 7.5 --->
+
+<!--- GATEWAY METHODS --->
+<cffunction name="getAllUsers" 
+		access="public" 
+		output="false" 
+		hint="I run a query of all users 
+				within the database table.">
+	<!--- 
+		Call the query method from the User Gateway 
+		and return the query object. 
+	--->	
+	<cfreturn variables.instance.userGW.filterAllUsers() />
+	
+</cffunction>
+
+<cffunction name="filterByLastName"
+		access="public"
+		output="false" 
+		hint="I run a query of all users within the database 
+				table based upon a required filter.">
+				
+    <cfargument name="lastNameFilter" 
+			required="true" 
+			type="string" 
+			hint="I am the lastname to filter." />
+		<!---
+			Create and populate a structure object
+			containing the filter to pass through.
+		--->	
+    	<cfset var stuFilter = {
+			lastname = arguments.lastNameFilter
+		} />
+	<!--- 
+		Send the structure into the query method 
+		and return the query object. 
+	--->
+    <cfreturn variables.instance.userGW.filterAllUsers(stuFilter) />
+	
+</cffunction>
+
+<cffunction name="filterByEmailAddress" 
+		access="public"
+		output="false" 
+		hint="I query the database to find a user 
+				with a matching email address.">
+				
+    <cfargument name="emailAddress" 
+			required="true" 
+			type="string" 
+			hint="I am the email address to search for." />
+		<!---
+			Create and populate a structure object
+			containing the filter to pass through.
+		--->
+    	<cfset var stuFilter = {
+			emailAddress = arguments.emailAddress
+		} />
+	<!--- 
+		Send the structure into the query method 
+		and return the query object. 
+	--->	
+    <cfreturn variables.instance.userGW.filterAllUsers(stuFilter) />
+	
+</cffunction>

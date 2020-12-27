@@ -1,0 +1,15 @@
+<!--- Listing 2.7 --->
+
+<cffunction name="baseNumber" returnType="numeric" access="private"> 
+	<cfargument name="a" type="numeric" required="true" /> 
+		<cfset Var x = arguments.a /> 
+	<cfreturn x /> 
+</cffunction>
+
+<cffunction name="multiplyNumbers" returntype="string"> 
+	<cfargument name="a" type="numeric" required="true" /> 
+	<cfargument name="b" type="numeric" required="true" /> 
+		<cfset Var x = 10 /> 
+		<cfset Var y = baseNumber(a) /> 
+	<cfreturn y & " multiplied by " & x & " = " & x * arguments.b /> 
+</cffunction>

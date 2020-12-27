@@ -1,0 +1,40 @@
+<!--- Listing 7.12 --->
+
+<!--- GATEWAY METHODS --->	
+<cffunction name="getAllAddresses" 
+		access="public" 
+		output="false" 
+		hint="I run a query of all users 
+				within the database table.">
+	<!--- 
+		Call the query method 
+		and return the query object. 
+	--->	
+	<cfreturn variables.instance.addressGW.getAllAddresses() />
+	
+</cffunction>
+
+<cffunction name="filterByUserID"
+		access="public"
+		output="false" 
+		hint="I run a query of all addresses within the database 
+				table based upon a required filter.">
+				
+    <cfargument name="userID" 
+			required="true" 
+			type="string" 
+			hint="I am the userID to filter." />
+		<!---
+			Create and populate a structure object
+			containing the filter to pass through.
+		--->	
+    	<cfset var stuFilter = {
+			userID = arguments.userID
+		} />
+	<!--- 
+		Send the structure into the query method 
+		and return the query object. 
+	--->
+    <cfreturn variables.instance.addressGW.filterAllAddresses(stuFilter) />
+	
+</cffunction>

@@ -1,0 +1,18 @@
+<!--- Listing 5.8 --->
+
+<cfif qSearch.RecordCount>
+	<!---
+		If a record has been returned for the userID, 
+		create an instance of the User bean, and return it.
+	--->
+	<cfset objPerson = 
+			createObject('component', 'com.packtApp.oop.beans.User')
+			.init(
+				ID				= qSearch.ID,
+				firstName		= qSearch.firstName,
+				lastName		= qSearch.lastName,
+				username		= qSearch.username,
+				password		= qSearch.password,
+				emailAddress	= qSearch.emailAddress
+			) />
+</cfif>

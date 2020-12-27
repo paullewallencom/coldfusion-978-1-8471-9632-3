@@ -1,0 +1,42 @@
+<!--- Listing 3.2 --->
+
+<!--- 
+	Build an empty structure
+	to emulate a Person entity. 
+--->
+<cfset stuPerson	= {
+			name 		= '',
+			age			= '',
+			hairColor	= ''
+		} />
+
+<cfdump var="#stuPerson#" 
+		label="Person - empty data" />
+		
+<!---
+	Update the structure with data
+	and display the output
+--->
+<cfset StructUpdate(
+			stuPerson, 
+			'name', 
+			'Matt Gifford'
+		) />
+		
+<cfset StructUpdate(
+			stuPerson, 
+			'hairColor', 
+			'Brown'
+		) />
+
+<br />
+
+<cfdump var="#stuPerson#" 
+		label="Person - data added" />
+		
+<br />
+		
+<cfoutput>
+	Name: #stuPerson.name#<br />
+	Hair: #stuPerson.hairColor#
+</cfoutput>

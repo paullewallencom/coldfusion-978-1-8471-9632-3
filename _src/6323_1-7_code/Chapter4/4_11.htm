@@ -1,0 +1,34 @@
+<!--- Listing 4.11 --->
+
+<!--- Instantiate the Driver object --->
+<cfset objDriver= 
+	createObject('component', 
+	'com.packtApp.oop.beans.Driver')
+	.init(
+		name 	= 'Stevey Jay',
+		age		= '31'
+	) />
+	
+<!--- 
+	Pass the Driver object 
+	into our Car object.
+--->
+<cfset objCar = 
+	createObject('component', 
+	'com.packtApp.oop.beans.Car')
+	.init(
+		driver = objDriver
+	) />
+	
+<cfdump var="#objCar#" />
+
+<cfoutput>
+
+<cfif objCar.hasDriver()>
+This car is being driven by #objDriver.getName()#, 
+who is #objDriver.getAge()# years old.
+<cfelse>
+The car is not being driven at the moment.
+</cfif>
+
+</cfoutput>

@@ -1,0 +1,59 @@
+<!--- Listing 5.4 --->
+
+<!--- CREATE --->
+<cffunction name="createNewUser" 
+			access="public" 
+			output="false" 
+			returntype="Numeric" 
+			hint="I insert a new record into the database.">
+			
+	<cfargument name="user" 
+				required="true" 
+				type="com.packtApp.oop.beans.User" 
+				hint="I am the User bean." />
+				
+		<cfset var qInsert 		= '' />
+		<cfset var insertResult = 0 />
+		
+			<cfquery name="qInsert"
+					datasource="#variables.instance.datasource.getDSName()#"
+				 	username="#variables.instance.datasource.getUsername()#"
+				 	password="#variables.instance.datasource.getPassword()#"
+					result="insertResult">
+				INSERT INTO tbl_Users
+					(
+						firstName,
+						lastName,
+						username,
+						password,
+						emailAddress
+					)
+				VALUES
+					(
+			<cfqueryparam 
+				cfsqltype="cf_sql_varchar" 
+				value="#arguments.user.getFirstName()#" />,
+				
+			<cfqueryparam 
+				cfsqltype="cf_sql_varchar" 
+				value="#arguments.user.getLastName()#" />,
+				
+			<cfqueryparam 
+				cfsqltype="cf_sql_varchar" 
+				value="#arguments.user.getUsername()#" />,
+			
+			<cfqueryparam 
+				cfsqltype="cf_sql_varchar" 
+				value="#arguments.user.getPassword()#" />,
+			
+			<cfqueryparam 
+				cfsqltype="cf_sql_varchar" 
+				value="#arguments.user.getEmailAddress()#" />
+					)
+			</cfquery>
+		<!---
+			Here, we return the generatedKey value, 
+			which is an auto-generated value from mySQL.
+		--->
+		<cfreturn insertResult.generatedKey />
+</cffunction>

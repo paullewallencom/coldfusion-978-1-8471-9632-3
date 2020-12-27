@@ -1,0 +1,10 @@
+<!--- Listing 1.38 --->
+
+<cffunction name="init">
+	<cfargument name="datasource" required="true" /> 
+		<cfscript> 
+		This.attributes 	= structNew(); 
+		This.attributes.dsn = arguments.datasource; 
+		</cfscript> 
+	<cfreturn This /> 
+</cffunction> 

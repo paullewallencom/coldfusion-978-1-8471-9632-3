@@ -1,0 +1,17 @@
+<!--- Listing 4.2 --->
+
+<cfcomponent displayname="Book" 
+			output="false" 
+			hint="I am the Book Class." 
+			extends="Product">
+
+	<cfproperty name="author" 		type="string" default="" />
+	<cfproperty name="totalPages" 	type="string" default="" />
+	<cfproperty name="name" 			type="string" default="" />
+	<cfproperty name="description" 	type="string" default="" />
+	<cfproperty name="price" 		type="string" default="" />
+
+	<cfset variables.instance = structNew() />
+	
+		
+</cfcomponent>

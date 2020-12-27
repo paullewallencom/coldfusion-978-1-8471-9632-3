@@ -1,0 +1,13 @@
+<!--- Listing 1.25 --->
+
+<cfscript> 
+// create a structure to hold the values 
+stuArguments = structNew(); 
+stuArguments.firstName 	= "James"; 
+stuArguments.lastName 	= "Brown"; 
+</cfscript>
+ 
+<cfinvoke component="greetings"
+	method="personalGreeting" 
+	argumentCollection="#stuArguments#" 
+	returnVariable="strPersonalGreeting" /> 

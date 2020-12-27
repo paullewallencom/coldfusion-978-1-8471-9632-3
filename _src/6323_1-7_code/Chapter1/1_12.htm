@@ -1,0 +1,18 @@
+<!--- Listing 1.12 --->
+
+<cfcomponent name="greetings"> 
+
+	<cffunction name="sayHello"> 
+		<cfset var strHelloMessage = 'Hello World!' /> 
+		<cfreturn strHelloMessage /> 
+	</cffunction> 
+	
+	<cffunction name="getName"> 
+		<cfargument name="firstName" type="string" /> 
+		<cfargument name="lastName"  type="string" /> 
+			<cfset var strFullName = arguments.firstName 
+								& ' ' & arguments.lastName />
+		<cfreturn strFullName /> 
+	</cffunction> 
+	
+</cfcomponent> 

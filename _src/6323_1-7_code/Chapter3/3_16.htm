@@ -1,0 +1,118 @@
+<!--- Listing 3.16 --->
+
+<cfcomponent displayname="Person" 
+			 output="false" 
+			 hint="I am the Person Class." 
+			 accessors="true">
+
+	<cfproperty name="firstName" 	
+				type="string" 
+				default="" 
+				setter="false" />
+				
+	<cfproperty name="lastName" 	
+				type="string" 
+				default="" 
+				setter="false" />
+	
+	<cfproperty name="gender" 		
+				type="string" 
+				default="" 
+				setter="false" />
+	
+	<cfproperty name="dateofbirth" 	
+				type="string" 
+				default="" 
+				setter="false" />
+	
+	<cfproperty name="hairColor"	
+				type="string" 
+				default="" 
+				setter="false" />
+	
+	<cffunction name="init" 
+				access="public" 
+				output="false" 
+				returntype="any" 
+				hint="I am the constructor method for the Person Class.">
+				
+		<cfargument name="firstName" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the first name." />
+					
+		<cfargument name="lastName" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the last name." />
+					
+		<cfargument name="gender" 		
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the gender." />
+					
+		<cfargument name="dateofbirth" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the date of birth." />
+					
+		<cfargument name="hairColor" 	
+					required="true" 
+					type="String" 
+					default="" 
+					hint="I am the hair color." />
+					
+			<!--- Set the initial values of the Bean --->
+			<cfscript>
+				variables.firstName 	= arguments.firstName;
+				variables.lastName 		= arguments.lastName;
+				variables.gender 		= arguments.gender;
+				variables.dateofbirth 	= arguments.dateofbirth;
+				variables.hairColor 	= arguments.hairColor;
+			</cfscript>
+			
+		<cfreturn this />
+		
+	</cffunction>
+	
+	<!--- public methods --->	
+	<cffunction name="getFullName" 
+				access="public" 
+				output="false" 
+				hint="I return the full name of the person.">
+		<cfset var strFullName = '' />
+		<!---
+			Concatenate the string values to return the full name.
+			Here, we call the variables values directly.
+			You could also call the get methods, like so:
+			getFirstName() & ' ' & getLastName()
+		--->
+			<cfset strFullName = variables.firstName & 
+						' ' & variables.lastName />
+
+		<cfreturn strFullName />
+	</cffunction>
+	
+	<cffunction name="getAgeInYears" 
+				access="public" 
+				output="false" 
+				hint="I work out the age of the person in 
+						years based upon the current date.">
+		<cfset var strAgeInYears = '' />
+			<cfset strAgeInYears = 
+					dateDiff('yyyy', getDateOfBirth(), now()) />
+		<cfreturn strAgeInYears />
+	</cffunction>
+	
+	<cffunction name="getMemento" 
+				access="public" 
+				output="false" 
+				hint="I return the variables scope.">
+		<cfreturn variables />
+	</cffunction>
+	
+</cfcomponent>

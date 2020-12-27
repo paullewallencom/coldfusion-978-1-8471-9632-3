@@ -1,0 +1,31 @@
+<!--- Listing 4.6 --->
+
+<cfcomponent displayname="Car" 
+			output="false" 
+			hint="I am the Car Class.">
+
+	<cfproperty name="engine" type="any" default="" />
+
+	<cfset variables.instance = structNew() />
+	
+	<cffunction name="init" access="public" 
+				output="false" returntype="any" 
+				hint="I am the constructor method 
+						for the Car Class.">
+
+		<cfset variables.instance.engine = 
+				createObject('component', 'engine') />
+
+		<cfreturn this />
+
+	</cffunction>
+	
+	<!--- getters / accessors --->
+	<cffunction name="getEngine" access="public" 
+				output="false" hint="I return the engine.">
+
+		<cfreturn variables.instance.engine />
+
+	</cffunction>
+
+</cfcomponent>

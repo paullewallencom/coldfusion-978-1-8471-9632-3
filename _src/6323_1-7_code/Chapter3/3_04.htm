@@ -1,0 +1,33 @@
+<!--- Listing 3.4 --->
+
+<!--- setters /mutators --->
+<cffunction name="setFirstName" 
+			access="public" 
+			output="false" 
+			hint="I set the first name into the 
+					variables.instance scope.">
+			
+	<cfargument name="firstName" 
+				required="true" 
+				type="String" 
+				hint="I am the person's firstName." />
+				
+		<cfset variables.instance.firstName = 
+					arguments.firstName />
+</cffunction>
+
+
+<cffunction name="setLastName" 
+			access="private" 
+			output="false" 
+			hint="I set the last name into the 
+					variables.instance scope.">
+			
+	<cfargument name="lastName" 
+				required="true" 
+				type="String" 
+				hint="I am the person's lastName." />
+				
+		<cfset variables.instance.lastName = 
+					arguments.lastName />
+</cffunction>

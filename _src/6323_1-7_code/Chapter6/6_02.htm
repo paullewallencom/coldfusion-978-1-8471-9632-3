@@ -1,0 +1,36 @@
+<!--- Listing 6.2 --->
+
+<cfcomponent displayname="UserGateway" 
+			output="false" 
+			hint="I am the UserGateway Class.">
+
+	<!--- Pseudo-constructor --->
+	<cfset variables.instance = {
+		datasource	= ''
+	} />
+	
+	<cffunction name="init" 
+			access="public" 
+			output="false" 
+			returntype="any" 
+			hint="I am the constructor method for 
+					the UserGateway Class.">
+					
+		<cfargument name="datasource" 
+				required="true" 
+				type="com.packtApp.oop.beans.Datasource" 
+				hint="I am the datasource object." />
+				
+			<!--- Set the initial values of the property --->
+			<cfscript>
+				variables.instance.datasource 
+					= arguments.datasource;
+			</cfscript>
+			
+		<cfreturn this />
+		
+	</cffunction>
+	
+	<!--- PUBLIC METHODS --->
+	
+</cfcomponent>

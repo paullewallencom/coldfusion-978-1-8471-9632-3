@@ -1,0 +1,21 @@
+<!--- Listing 3.14 --->
+
+<cfscript>
+	// Instantiate the Person object
+	objPerson = createObject('component', 
+		'com.packtApp.oop.beans.Person')
+		.init(
+			firstName	=	'Matt',
+			lastName	=	'James',
+			gender		=	'Male',
+			hairColor	=	'Brown',
+			dateofbirth	=	'01/04/1979'
+		);
+</cfscript>
+
+<!---
+	View the content of the variables.instance
+	scope using the getMemento() method
+--->
+<cfdump var="#objPerson.getMemento()#"
+		label="Person - populated variables.instance" />

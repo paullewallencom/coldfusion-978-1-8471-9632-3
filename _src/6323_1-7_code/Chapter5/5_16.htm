@@ -1,0 +1,38 @@
+<!--- Listing 5.16 --->
+
+<!--- EXISTS --->
+<cffunction name="exists" 
+			access="public" 
+			output="false" 
+			returntype="boolean" 
+			hint="I check to see if a specific User exists within 
+					the database, using the ID as a check.">
+					
+	<cfargument name="user" 
+				required="true" 
+				type="com.packtApp.oop.beans.User" 
+				hint="I am the User bean." />
+				
+    	<cfset var qExists = "">
+    	
+	        <cfquery name="qExists"
+				 	datasource="#variables.instance.datasource.getDSName()#"
+				 	username="#variables.instance.datasource.getUsername()#"
+				 	password="#variables.instance.datasource.getPassword()#"
+					maxrows="1">
+	       		SELECT count(1) as idexists
+	       		FROM
+					tbl_Users
+	       		WHERE 
+					ID = <cfqueryparam 
+	               				value="#arguments.user.getID()#"
+	               				CFSQLType="cf_sql_integer" />
+	       	</cfquery>
+			
+	       <cfif qExists.idexists>
+	           <cfreturn true />
+	       <cfelse>
+	           <cfreturn false />
+	       </cfif>
+		   
+</cffunction>

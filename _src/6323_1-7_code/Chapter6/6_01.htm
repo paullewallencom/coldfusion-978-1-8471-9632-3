@@ -1,0 +1,30 @@
+<!--- Listing 6.1 --->
+
+<cfquery name="qlistUsers"
+		datasource="CFOOP"
+		username="username"
+		password="password">
+	SELECT
+		ID,
+		firstName,
+		lastName,
+		username,
+		password,
+		emailAddress
+	FROM
+		tbl_Users
+	ORDER BY firstName
+</cfquery>
+
+<cfdump var="#qlistUsers#"
+		label="qlistUsers" />
+
+<h3>List All Users</h3>
+
+<ul>
+	<cfoutput query="qlistUsers">
+		<li><a href="editUser.cfm?ID=#ID#">
+			#firstName# #lastName#</a>
+		</li>
+	</cfoutput>
+</ul>

@@ -1,0 +1,28 @@
+<!--- Listing 6.4 --->
+
+<!--- PUBLIC METHODS --->
+<cffunction name="getAllUsers" 
+		access="public" 
+		output="false" 
+		hint="I run a query of all users within the database table.">
+
+	<cfset var qAllUsers 	= '' />
+	
+		<cfquery name="qAllUsers"
+				 datasource="#variables.instance.datasource.getDSName()#"
+				 username="#variables.instance.datasource.getUsername()#"
+				 password="#variables.instance.datasource.getPassword()#">
+			SELECT
+			 	ID,
+				firstName,
+				lastName,
+				username,
+				password,
+				emailAddress
+			FROM
+				tbl_Users
+		</cfquery>
+		
+	<cfreturn qAllUsers />
+	
+</cffunction>

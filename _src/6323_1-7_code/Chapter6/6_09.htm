@@ -1,0 +1,62 @@
+<!--- Listing 6.9 --->
+
+<!--- PRIVATE METHODS --->
+<cffunction name="filterAllUsers" 
+		access="private" 
+		output="false" 
+		hint="I run a query and will return all user records. 
+				If a filter has been supplied, I will refine the search 
+				using the filter information sent to me.">
+				
+	<cfargument name="filter" 
+		required="false" 
+		type="Struct" 
+		default="#structNew()#" 
+		hint="I am a structure used to filter the query." />
+		
+		<cfset var qSearch 		= '' />
+		
+			<cfquery name="qSearch"
+				 	 datasource="#variables.instance.datasource.getDSName()#"
+				 	 username="#variables.instance.datasource.getUsername()#"
+				 	 password="#variables.instance.datasource.getPassword()#">
+				SELECT
+				 	ID,
+					firstName,
+					lastName,
+					username,
+					password,
+					emailAddress
+				FROM
+					tbl_Users
+				WHERE
+					1 = 1
+				<cfif NOT structIsEmpty(arguments.filter)>
+					<!--- 
+						A filter has been provided. 
+						Let's find out which filter it is,
+						and apply the necessary clause to the SQL.	
+					--->
+					<!---
+						Perform a LIKE comparison on the lastname
+					--->
+					<cfif structKeyExists(arguments.filter, 'lastname')>
+						AND lastname LIKE 
+							<cfqueryparam cfsqltype="cf_sql_varchar" 
+									value="#arguments.filter.lastname#" />
+					</cfif>
+					<!---
+						Here, we want to find exact email address matches.
+					--->
+					<cfif structKeyExists(arguments.filter, 'emailAddress')>
+						AND emailAddress = 
+							<cfqueryparam cfsqltype="cf_sql_varchar" 
+									value="#arguments.filter.emailAddress#" />
+					</cfif>
+					
+				</cfif>
+			</cfquery>
+			
+	<cfreturn qSearch />
+	
+</cffunction>

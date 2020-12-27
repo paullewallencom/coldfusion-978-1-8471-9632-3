@@ -1,0 +1,28 @@
+<!--- Listing 4.4 --->
+
+<cfset objBook = 
+	createObject('component', 
+	'com.packtApp.oop.beans.Book')
+	.init(
+		author			= 'John Farrar',
+		totalPages		= '382',
+		name 			= 'ColdFusion 9 Developer Tutorial',
+		description		= 'Create robust professional web 
+							applications with ColdFusion',
+		price			= '30.99'
+	) />
+	
+<cfdump var="#objBook#" />
+	
+<cfset objDVD = 
+	createObject('component', 
+	'com.packtApp.oop.beans.DVD')
+	.init(
+		director		= 'Steven Iceberg',
+		duration		= '220 minutes',
+		name 			= 'Raising Wisconsin',
+		description		= 'One man against the world.',
+		price			= '14.75'
+	) />
+	
+<cfdump var="#objDVD#" />

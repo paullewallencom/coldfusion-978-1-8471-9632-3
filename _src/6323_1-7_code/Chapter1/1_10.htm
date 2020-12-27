@@ -1,0 +1,9 @@
+<!--- Listing 1.10 --->
+
+<cffunction name="getName"> 
+	<cfargument name="firstName" type="string" /> 
+	<cfargument name="lastName"  type="string" /> 
+		<cfset var strFullName = arguments.firstName 
+									& ' ' & arguments.lastName /> 
+	<cfreturn strFullName /> 
+</cffunction> 

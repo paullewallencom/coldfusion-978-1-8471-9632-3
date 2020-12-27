@@ -1,0 +1,54 @@
+<!--- Listing 7.2 --->
+
+<cfcomponent displayname="UserService" 
+		output="false" 
+		hint="I am the UserSVC Class used to 
+			interact with the User package.">
+
+	<!--- Pseudo-constructor --->
+	<cfset variables.instance = {
+		userDAO	= '',
+		userGW	= ''
+	} />
+	
+	<cffunction name="init" 
+			access="public" 
+			output="false" 
+			returntype="any" 
+			hint="I am the constructor method for 
+					the UserSVC Class.">
+			
+		<cfargument name="datasource" 
+				required="true" 
+				type="com.packtApp.oop.beans.Datasource" 
+				hint="I am the datasource object." />
+				
+			<!--- Set the initial values of the Bean --->
+			<cfscript>
+				// instantiate the Data Access Object
+				variables.instance.userDAO 
+					= createObject(
+						'component', 
+						'UserDAO'
+						)
+						.init(arguments.datasource);
+						
+				// instantiate the Gateway
+				variables.instance.userGW 
+					= createObject(
+						'component', 
+						'UserGateway'
+						)
+						.init(arguments.datasource);
+			</cfscript>
+			
+		<cfreturn this />
+		
+	</cffunction>
+	
+	<!--- CRUD METHODS --->
+	
+	
+	<!--- GATEWAY METHODS --->
+	
+</cfcomponent>

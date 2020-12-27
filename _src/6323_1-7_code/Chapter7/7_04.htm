@@ -1,0 +1,16 @@
+<!--- Listing 7.4 --->
+
+<cffunction name="save" access="public"
+			output="false" 
+			hint="I save or update a User into the database.">
+
+	<!--- send in the required user object --->
+	<cfargument name="user" 
+				required="true" 
+				type="com.packtApp.oop.beans.User" 
+				hint="I am the User bean." />
+
+	<!--- call the save() method within the userDAO --->
+	<cfreturn variables.instance.userDAO.saveUser(arguments.user) />
+
+</cffunction>

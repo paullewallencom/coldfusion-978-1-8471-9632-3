@@ -1,0 +1,30 @@
+<!--- Listing 1.33 --->
+
+<cfcomponent name="contacts">
+	 
+	<cffunction name="init"> 
+		<cfargument name="datasource" type="string" required="true" /> 
+			<cfscript> 
+			Variables.attributes = structNew(); 
+			Variables.attributes.dsn = arguments.datasource; 
+			</cfscript> 
+		<cfreturn this /> 
+	</cffunction>
+	
+	<cffunction name="getContact"> 
+		<cfargument name="ID" type="numeric" default="0" /> 
+			<cfset var rstContact = "" /> 
+				<cfquery name="rstContact" datasource="projectTracker"> 
+				SELECT 
+					firstName,
+					lastName 
+				FROM Owners 
+				<cfifarguments.ID GT 0> 
+				WHERE ID = <cfqueryparam cfsqltype="cf_sql_integer" 
+										 value="#arguments.ID#" /> 
+				</cfif> 
+				</cfquery> 
+		<cfreturn rstContact />
+	</cffunction> 
+	
+</cfcomponent> 

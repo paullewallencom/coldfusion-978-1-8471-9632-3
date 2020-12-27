@@ -1,0 +1,19 @@
+<!--- Listing 4.12 --->
+
+<cfset objCar = 
+	createObject('component', 
+	'com.packtApp.oop.beans.Car')
+	.init( ) />
+	
+<cfdump var="#objCar#" />
+
+<cfoutput>
+
+<cfif objCar.hasDriver()>
+This car is being driven by #objDriver.getName()#, 
+who is #objDriver.getAge()# years old.
+<cfelse>
+The car is not being driven at the moment.
+</cfif>
+
+</cfoutput>

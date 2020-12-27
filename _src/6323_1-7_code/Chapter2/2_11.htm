@@ -1,0 +1,8 @@
+<!--- Listing 2.11 --->
+
+<cfscript> 
+objProjects 	= createObject("component", "com.Projects.Projects"); 
+objProjectsMeta = getMetaData(objProjects); 
+</cfscript>
+
+<cfdump var="#objProjectsMeta#" />

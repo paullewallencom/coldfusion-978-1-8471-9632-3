@@ -1,0 +1,62 @@
+<!--- Listing 5.6 --->
+
+<cfif structKeyExists(FORM, 'submitUser_btn')>
+
+	<!--- Instantiate the Datasource object. --->
+	<cfset objDatasource = 
+			createObject('component',
+			'com.packtApp.oop.beans.Datasource')
+			.init(
+				DSName='CFOOP',
+				username='<your dsn username>',
+				password='<your dsn password>'
+			) />
+	
+	<!---
+		Instantiate the UserDAO object, 
+		and pass in the Datasource object.
+	--->
+	<cfset objUserDAO = 
+			createObject('component', 
+			'com.packtApp.oop.dataAccess.UserDAO')
+			.init(
+				datasource=objDataSource
+			) />
+	
+	<!---
+		Populate a new User bean with the data
+		submitted in the form.
+	--->
+	<cfset objUserBean = 
+			createObject('component',
+			'com.packtApp.oop.beans.User')
+			.init(
+				argumentCollection=FORM
+			) />
+	
+	<!--- 
+		Dump the User Bean so we can see
+		it populated with the FORM data.
+	--->
+	<cfdump var="#objUserBean#" 
+			label="New User Bean" />
+	
+	<!---
+		Send the new User bean into the UserDAO
+		to create a new database entry, returning
+		the generated key of the new record.
+	--->
+	<cfset intNewID = 
+		objUserDAO.createNewUser(user=objUserBean) />
+	
+	<!--- Set the new ID into the User Bean --->
+	<cfset objUserBean.setID(intNewID) />
+	
+	<!--- 
+		Dump the User Bean so we can see
+		it completely opulated now.
+	--->
+	<cfdump var="#objUserBean#" 
+			label="Revised New User Bean" />
+
+</cfif>

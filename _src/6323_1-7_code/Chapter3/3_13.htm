@@ -1,0 +1,16 @@
+<!--- Listing 3.13 --->
+
+<cffunction name="setFirstName" 
+			access="private" 
+			output="false" 
+			hint="I set the first name into the 
+					variables.instance scope.">
+					
+	<cfargument name="firstName" 
+				required="true" 
+				type="String" 
+				hint="I am the persons firstName." />
+				
+		<cfset variables.instance.firstName = 
+					arguments.firstName />
+</cffunction>

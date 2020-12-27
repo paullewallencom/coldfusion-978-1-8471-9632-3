@@ -1,0 +1,51 @@
+<!--- Listing 5.10 --->
+
+<!--- UPDATE --->
+<cffunction name="updateUser" 
+			access="public" 
+			output="false" 
+			hint="I update a users details.">
+			
+	<cfargument name="user" 
+				required="true" 
+				type="com.packtApp.oop.beans.User" 
+				hint="I am the User bean." />
+				
+		<cfset var qUpdate 		= '' />
+		<cfset var boolSuccess	= true />
+		
+			<cftry>
+			
+				<cfquery name="qUpdate"
+						datasource="#variables.instance.datasource.getDSName()#"
+					 	username="#variables.instance.datasource.getUsername()#"
+					 	password="#variables.instance.datasource.getPassword()#">
+					UPDATE tbl_Users
+					SET
+						firstName 		= <cfqueryparam 
+											cfsqltype="cf_sql_varchar" 
+											value="#arguments.user.getFirstName()#" />,
+						lastName		= <cfqueryparam 
+											cfsqltype="cf_sql_varchar" 
+											value="#arguments.user.getLastName()#" />,
+						username		= <cfqueryparam 
+											cfsqltype="cf_sql_varchar" 
+											value="#arguments.user.getUsername()#" />,
+						password		= <cfqueryparam 
+											cfsqltype="cf_sql_varchar" 
+											value="#arguments.user.getPassword()#" />,
+						emailAddress	= <cfqueryparam 
+											cfsqltype="cf_sql_varchar" 
+											value="#arguments.user.getEmailAddress()#" />
+					WHERE
+						ID	= <cfqueryparam 
+									cfsqltype="cf_sql_integer" 
+									value="#arguments.user.getID()#" />
+				</cfquery>
+				
+				<cfcatch type="database">
+					<cfset boolSuccess = false />
+				</cfcatch>
+			</cftry>
+	<cfreturn boolSuccess  />
+</cffunction>

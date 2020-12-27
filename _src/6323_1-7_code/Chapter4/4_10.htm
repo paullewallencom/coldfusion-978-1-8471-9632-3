@@ -1,0 +1,51 @@
+<!--- Listing 4.10 --->
+
+<cfcomponent displayname="Driver" 
+			output="false" 
+			hint="I am the Driver Class.">
+
+	<cfproperty name="name" type="string" default="" />
+	<cfproperty name="age" 	type="string" default="" />
+
+	<cfset variables.instance = structNew() />
+	
+	<cffunction name="init" access="public" 
+				output="false" returntype="any" 
+				hint="I am the constructor method 
+						for the Driver Class.">
+						
+		<cfargument name="name" required="true" 
+					type="String" 
+					hint="I am the name of the driver." />
+					
+		<cfargument name="age" required="true" 
+					type="String" 
+					hint="I am the age of the driver." />
+					
+			<cfscript>
+				variables.instance.name = arguments.name;
+				variables.instance.age 	= arguments.age;
+			</cfscript>
+			
+		<cfreturn this />
+		
+	</cffunction>
+	
+	<!--- getters / accessors --->
+	<cffunction name="getName" access="public" 
+				output="false" 
+				hint="I return the name of the driver.">
+				
+		<cfreturn variables.instance.name />
+		
+	</cffunction>
+	
+	<cffunction name="getAge" access="public" 
+				output="false" 
+				hint="I return the age of the driver.">
+				
+		<cfreturn variables.instance.age />
+		
+	</cffunction>
+	
+</cfcomponent>

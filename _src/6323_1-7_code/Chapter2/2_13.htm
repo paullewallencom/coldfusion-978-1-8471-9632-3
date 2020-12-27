@@ -1,0 +1,11 @@
+<!--- Listing 2.13 --->
+
+<cfscript> 
+objProjectsMeta = getMetaData(objProjects); 
+</cfscript>
+ 
+<cfoutput>
+Component: #objProjectsMeta.Name#<br /> 
+Written by: #objProjectsMeta.Developer#<br /> 
+Application: #objProjectsMeta.Application# 
+</cfoutput> 
